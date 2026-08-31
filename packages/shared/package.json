@@ -1,12 +1,9 @@
 {
   "name": "@dsa-tracker/shared",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.4"
   }
 }

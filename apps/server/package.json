@@ -4,12 +4,13 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "node --watch src/server.js",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed": "tsx src/db/seed.ts",
+    "seed": "node src/db/seed.js",
     "generate": "drizzle-kit generate",
-    "migrate": "tsx src/db/migrate.ts"
+    "migrate": "node src/db/migrate.js",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@dsa-tracker/shared": "*",
@@ -23,7 +24,6 @@
     "@libsql/client": "^0.17.4",
     "@types/node": "^20.14.9",
     "drizzle-kit": "^0.31.10",
-    "tsx": "^4.19.0",
-    "typescript": "^5.5.4"
+    "tsx": "^4.19.0"
   }
 }
