@@ -9,8 +9,12 @@ async function fetchTopics() {
   if (!res.ok) throw new Error("Failed to fetch topics");
   return res.json();
 }
-async function triggerSync() {
-  const res = await fetch(`${API_BASE}/sync`, { method: "POST" });
+async function triggerSync(sessionCookie) {
+  const res = await fetch(`${API_BASE}/sync`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sessionCookie })
+  });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
     throw new Error(data.error || "Failed to sync");
