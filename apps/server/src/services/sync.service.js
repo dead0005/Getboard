@@ -7,13 +7,13 @@ class SyncService {
   constructor() {
     this.client = new LeetCodeClient();
   }
-  async runSync() {
+  async runSync(sessionCookie) {
     const [run] = await db.insert(schema.syncRuns).values({
       runAt: /* @__PURE__ */ new Date(),
       status: "running"
     }).returning();
     try {
-      const solvedSlugs = await this.client.getSolvedQuestions();
+      const solvedSlugs = await this.client.getSolvedQuestions(sessionCookie);
       let newSolvesCount = 0;
       if (solvedSlugs.length > 0) {
         const lcQuestions = await db.select().from(schema.leetcodeQuestions).where(inArray(schema.leetcodeQuestions.titleSlug, solvedSlugs));

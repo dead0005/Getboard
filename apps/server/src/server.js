@@ -20,7 +20,8 @@ server.get("/api/health", async () => {
 });
 server.post("/api/sync", async (request, reply) => {
   try {
-    const result = await syncService.runSync();
+    const { sessionCookie } = request.body || {};
+    const result = await syncService.runSync(sessionCookie);
     return result;
   } catch (err) {
     server.log.error(err);
