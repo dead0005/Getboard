@@ -1,11 +1,14 @@
 import { z } from "zod";
 import { config } from "dotenv";
 import path from "path";
-config({ path: path.resolve(process.cwd(), "../../.env") });
-config({ path: path.resolve(process.cwd(), ".env") });
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+config({ path: path.resolve(__dirname, "../../../../.env") });
+config({ path: path.resolve(__dirname, "../../../.env") });
 const envSchema = z.object({
   PORT: z.string().default("3001"),
-  DATABASE_URL: z.string().default("apps/server/sqlite.db"),
+  DATABASE_URL: z.string().default("sqlite.db"),
   LEETCODE_SESSION: z.string().optional(),
   LEETCODE_CSRF_TOKEN: z.string().optional()
 });
